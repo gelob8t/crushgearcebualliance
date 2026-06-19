@@ -1,0 +1,16 @@
+{
+  "name": "Crush Gear Cebu Alliance",
+  "short_name": "CGCA",
+  "description": "Fan community website for Crush Gear Cebu Alliance.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#06111f",
+  "theme_color": "#071427",
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

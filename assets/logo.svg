@@ -1,0 +1,26 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Crush Gear Cebu Alliance custom logo placeholder</title>
+<desc id="desc">A custom gear emblem with CGCA letters for the fan community website.</desc>
+<defs>
+  <linearGradient id="g1" x1="94" y1="94" x2="546" y2="546" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#00D4FF"/>
+    <stop offset="0.48" stop-color="#6D5DFF"/>
+    <stop offset="1" stop-color="#FF315E"/>
+  </linearGradient>
+  <linearGradient id="g2" x1="160" y1="140" x2="504" y2="504" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#FFFFFF"/>
+    <stop offset="1" stop-color="#AEEBFF"/>
+  </linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000716" flood-opacity="0.55"/>
+  </filter>
+</defs>
+<rect width="640" height="640" rx="150" fill="#06111F"/>
+<circle cx="320" cy="320" r="243" fill="#091A2B" stroke="url(#g1)" stroke-width="16" filter="url(#shadow)"/>
+<path d="M320 68L356 130L429 108L438 184L510 204L474 270L526 324L462 366L478 440L402 443L363 508L320 448L277 508L238 443L162 440L178 366L114 324L166 270L130 204L202 184L211 108L284 130L320 68Z" fill="url(#g1)" opacity="0.96"/>
+<circle cx="320" cy="320" r="154" fill="#081525" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="8"/>
+<path d="M184 346L291 205C308 183 341 189 350 217L367 269L454 245C474 240 489 264 476 280L368 423C351 445 317 438 309 410L294 359L205 382C185 387 171 362 184 346Z" fill="url(#g2)"/>
+<path d="M226 332L297 238L318 303L412 277L337 376L316 311L226 332Z" fill="#06111F" opacity="0.88"/>
+<text x="320" y="555" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="76" letter-spacing="5" fill="#FFFFFF">CGCA</text>
+<text x="320" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" letter-spacing="6" fill="#8CEAFF">CEBU ALLIANCE</text>
+</svg>

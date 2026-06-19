@@ -1,0 +1,40 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Stylized battle gear illustration</title>
+<desc id="desc">A custom futuristic toy battle machine illustration for the fan website hero area.</desc>
+<defs>
+  <linearGradient id="body" x1="267" y1="173" x2="943" y2="600" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#EAFBFF"/>
+    <stop offset="0.25" stop-color="#16D6FF"/>
+    <stop offset="0.62" stop-color="#6658FF"/>
+    <stop offset="1" stop-color="#FF315E"/>
+  </linearGradient>
+  <linearGradient id="blade" x1="102" y1="380" x2="451" y2="380" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#FFFFFF"/>
+    <stop offset="1" stop-color="#7BE7FF"/>
+  </linearGradient>
+  <filter id="glow" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+    <feGaussianBlur stdDeviation="18" result="blur"/>
+    <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.0 0 0 0 0 0.66 0 0 0 0 1 0 0 0 0.65 0"/>
+    <feBlend in2="SourceGraphic" mode="screen"/>
+  </filter>
+</defs>
+<rect width="1200" height="800" fill="none"/>
+<g filter="url(#glow)">
+  <path d="M100 410L435 318L574 166L881 211L1058 380L875 555L558 602L420 470L100 410Z" fill="#071427"/>
+  <path d="M101 407L435 314L573 167L876 210L1058 376L876 548L560 595L417 466L101 407Z" fill="url(#body)"/>
+  <path d="M101 407L405 347L451 383L405 417L101 407Z" fill="url(#blade)"/>
+  <path d="M512 267L590 199L817 232L937 339L719 321L639 424L480 433L584 350L512 267Z" fill="#081525" opacity="0.75"/>
+  <path d="M700 188L833 207L1042 381L906 333L811 255L673 238L700 188Z" fill="#FF315E"/>
+  <path d="M532 541L680 588L882 551L768 491L633 509L532 541Z" fill="#00D4FF" opacity="0.78"/>
+  <path d="M478 291L611 338L536 416L417 389L478 291Z" fill="#F6FF00" opacity="0.95"/>
+  <path d="M831 255L1019 371L840 364L716 321L831 255Z" fill="#111B2D" opacity="0.78"/>
+  <circle cx="503" cy="566" r="74" fill="#09111F" stroke="#DDF8FF" stroke-width="12"/>
+  <circle cx="503" cy="566" r="31" fill="#0EE0FF"/>
+  <circle cx="852" cy="529" r="86" fill="#09111F" stroke="#DDF8FF" stroke-width="12"/>
+  <circle cx="852" cy="529" r="34" fill="#FF315E"/>
+  <path d="M965 386L1111 417L969 450L917 419L965 386Z" fill="#DDF8FF"/>
+  <path d="M280 389L396 364" stroke="#06111F" stroke-width="11" stroke-linecap="round" opacity="0.6"/>
+  <path d="M294 428L419 439" stroke="#06111F" stroke-width="11" stroke-linecap="round" opacity="0.6"/>
+  <path d="M671 452L787 423" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10" stroke-linecap="round"/>
+</g>
+</svg>
