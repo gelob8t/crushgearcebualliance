@@ -1,233 +1,1450 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Crush Gear Cebu Alliance | Community Battles, Builds & Collectors</title>
-  <meta name="description" content="A fan community website for Crush Gear Cebu Alliance: community battles, build sharing, casual meetups, collectors, and hobby support." />
-  <meta name="theme-color" content="#071427" />
-  <meta property="og:title" content="Crush Gear Cebu Alliance" />
-  <meta property="og:description" content="Cebu's fan community for Crush Gear builders, collectors, and friendly battles." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/logo.svg" />
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crush Gear Community</title>
 
-  <header class="site-header" id="top">
-    <nav class="nav container" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Crush Gear Cebu Alliance home">
-        <img src="assets/logo.svg" alt="Crush Gear Cebu Alliance logo" />
-        <span>
-          <strong>Crush Gear</strong>
-          <small>Cebu Alliance</small>
-        </span>
+  <style>
+    :root {
+      --bg: #050713;
+      --bg-2: #08152b;
+      --panel: rgba(9, 22, 46, 0.88);
+      --panel-2: rgba(3, 10, 24, 0.92);
+      --blue: #00b7ff;
+      --blue-2: #0066ff;
+      --cyan: #00f0ff;
+      --red: #ff1c16;
+      --orange: #ff7a00;
+      --yellow: #ffd700;
+      --white: #f8fbff;
+      --muted: #a9b7d0;
+      --shadow-blue: 0 0 28px rgba(0, 183, 255, 0.35);
+      --shadow-red: 0 0 28px rgba(255, 28, 22, 0.32);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(0, 183, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 85% 20%, rgba(255, 122, 0, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(255, 28, 22, 0.18), transparent 38%),
+        linear-gradient(135deg, #02030a 0%, #071127 45%, #02030a 100%);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(rgba(0, 183, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 183, 255, 0.08) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        repeating-linear-gradient(
+          120deg,
+          transparent 0,
+          transparent 18px,
+          rgba(255, 255, 255, 0.025) 19px,
+          rgba(255, 255, 255, 0.025) 20px
+        );
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-strip {
+      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--blue));
+      height: 5px;
+      box-shadow: var(--shadow-blue), var(--shadow-red);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(18px);
+      background: rgba(2, 6, 18, 0.78);
+      border-bottom: 1px solid rgba(0, 183, 255, 0.24);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 74px;
+      height: 54px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(0, 183, 255, 0.6));
+    }
+
+    .brand-fallback {
+      width: 58px;
+      height: 58px;
+      display: none;
+      place-items: center;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--red), var(--orange) 45%, var(--blue));
+      clip-path: polygon(12% 0, 100% 0, 86% 100%, 0 100%);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .brand-text span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #dce9ff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue));
+      transition: 0.25s ease;
+      border-radius: 99px;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid rgba(0, 183, 255, 0.45);
+      background: rgba(0, 183, 255, 0.08);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      border: 0;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      color: white;
+      background:
+        linear-gradient(135deg, var(--red), var(--orange) 46%, var(--yellow) 72%, var(--blue));
+      box-shadow: var(--shadow-red);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--shadow-red), var(--shadow-blue);
+    }
+
+    .btn-ghost {
+      color: var(--white);
+      background: rgba(0, 183, 255, 0.08);
+      border: 1px solid rgba(0, 183, 255, 0.45);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-3px);
+      background: rgba(0, 183, 255, 0.18);
+    }
+
+    .hero {
+      position: relative;
+      padding: 92px 0 78px;
+      min-height: calc(100vh - 87px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 660px;
+      height: 660px;
+      right: -250px;
+      top: 20px;
+      background:
+        conic-gradient(from 90deg, transparent, rgba(0, 183, 255, 0.45), transparent, rgba(255, 122, 0, 0.28), transparent);
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.65;
+      animation: spin 16s linear infinite;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: var(--yellow);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.18);
+    }
+
+    .kicker::before {
+      content: "⚡";
+      color: var(--orange);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 7.6rem);
+      line-height: 0.86;
+      text-transform: uppercase;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+    }
+
+    .text-gradient {
+      background:
+        linear-gradient(180deg, #fff 0%, #b9dfff 16%, var(--blue) 36%, var(--red) 58%, var(--orange) 82%, var(--yellow) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      filter: drop-shadow(0 0 22px rgba(0, 183, 255, 0.2));
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: #c7d6ef;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 630px;
+    }
+
+    .stat {
+      position: relative;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(8, 21, 43, 0.9), rgba(3, 10, 24, 0.92));
+      border: 1px solid rgba(0, 183, 255, 0.32);
+      clip-path: polygon(0 0, 92% 0, 100% 26%, 100% 100%, 8% 100%, 0 74%);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--yellow);
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      background:
+        linear-gradient(135deg, rgba(0, 183, 255, 0.18), transparent 35%),
+        linear-gradient(315deg, rgba(255, 28, 22, 0.22), transparent 40%),
+        rgba(4, 12, 28, 0.78);
+      border: 1px solid rgba(0, 183, 255, 0.38);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-blue), var(--shadow-red);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .logo-showcase {
+      position: relative;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+    }
+
+    .logo-showcase::before,
+    .logo-showcase::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .logo-showcase::before {
+      width: 310px;
+      height: 310px;
+      background: radial-gradient(circle, rgba(0, 183, 255, 0.28), transparent 68%);
+    }
+
+    .logo-showcase::after {
+      width: 210px;
+      height: 210px;
+      background: radial-gradient(circle, rgba(255, 122, 0, 0.24), transparent 70%);
+      animation-delay: 0.45s;
+    }
+
+    .main-logo {
+      position: relative;
+      z-index: 1;
+      width: min(520px, 100%);
+      filter:
+        drop-shadow(0 0 12px rgba(0, 183, 255, 0.8))
+        drop-shadow(0 0 18px rgba(255, 28, 22, 0.45));
+      transform: rotate(-2deg);
+    }
+
+    .speed-line {
+      position: absolute;
+      width: 220px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--yellow), transparent);
+      opacity: 0.75;
+      animation: speed 2.4s linear infinite;
+    }
+
+    .speed-line.one {
+      top: 70px;
+      left: -80px;
+    }
+
+    .speed-line.two {
+      top: 132px;
+      right: -100px;
+      animation-delay: 0.4s;
+    }
+
+    .speed-line.three {
+      bottom: 88px;
+      left: -120px;
+      animation-delay: 0.8s;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      max-width: 720px;
+    }
+
+    .section-title span {
+      display: inline-block;
+      color: var(--yellow);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .section-note {
+      max-width: 390px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      padding: 28px;
+      min-height: 250px;
+      background:
+        linear-gradient(140deg, rgba(0, 183, 255, 0.12), transparent 42%),
+        linear-gradient(320deg, rgba(255, 122, 0, 0.12), transparent 44%),
+        var(--panel);
+      border: 1px solid rgba(0, 183, 255, 0.28);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 5px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--blue));
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow-blue);
+      border-color: rgba(255, 215, 0, 0.45);
+    }
+
+    .card-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      font-size: 1.7rem;
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--blue));
+      clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+      box-shadow: var(--shadow-red);
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .battle-zone {
+      background:
+        linear-gradient(180deg, rgba(0, 183, 255, 0.05), rgba(255, 28, 22, 0.05)),
+        rgba(0, 0, 0, 0.18);
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 20px;
+      padding: 24px;
+      background: var(--panel-2);
+      border: 1px solid rgba(0, 183, 255, 0.28);
+      border-radius: var(--radius);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .event-date {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 110px;
+      background:
+        linear-gradient(135deg, var(--red), var(--orange) 52%, var(--yellow));
+      color: white;
+      border-radius: 18px;
+      box-shadow: var(--shadow-red);
+      clip-path: polygon(0 0, 86% 0, 100% 20%, 100% 100%, 14% 100%, 0 80%);
+    }
+
+    .event-date strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .event-date span {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .event h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .event p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #dff7ff;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: rgba(0, 183, 255, 0.12);
+      border: 1px solid rgba(0, 183, 255, 0.32);
+    }
+
+    .ranking-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .ranking-card {
+      padding: 30px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 28, 22, 0.12), transparent),
+        var(--panel);
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      box-shadow: var(--shadow-red);
+    }
+
+    .ranking-card h3 {
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .ranking-card p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rank-item {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 17px;
+      background: rgba(3, 10, 24, 0.9);
+      border: 1px solid rgba(0, 183, 255, 0.26);
+      border-radius: 16px;
+    }
+
+    .rank-no {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      box-shadow: var(--shadow-blue);
+    }
+
+    .rank-name strong {
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .rank-name span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .points {
+      color: var(--yellow);
+      font-weight: 900;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      min-height: 210px;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(0, 183, 255, 0.35), rgba(255, 28, 22, 0.25)),
+        #071127;
+      border: 1px solid rgba(0, 183, 255, 0.32);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+    }
+
+    .gallery-item::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background:
+        conic-gradient(from 180deg, transparent, rgba(255, 215, 0, 0.25), transparent, rgba(0, 183, 255, 0.3), transparent);
+      animation: spin 9s linear infinite;
+    }
+
+    .gallery-item div {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-item strong {
+      display: block;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .gallery-item span {
+      color: #d8e7ff;
+      font-size: 0.9rem;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .rule {
+      display: flex;
+      gap: 16px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(3, 10, 24, 0.82);
+      border: 1px solid rgba(0, 183, 255, 0.24);
+    }
+
+    .rule-num {
+      flex: 0 0 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      box-shadow: var(--shadow-red);
+    }
+
+    .rule strong {
+      display: block;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .rule p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      position: relative;
+      text-align: center;
+      padding: 74px 28px;
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 28, 22, 0.22), transparent 35%),
+        linear-gradient(315deg, rgba(0, 183, 255, 0.25), transparent 40%),
+        rgba(3, 10, 24, 0.92);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      box-shadow: var(--shadow-blue), var(--shadow-red);
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+      transform: translateX(-100%);
+      animation: shine 4s ease-in-out infinite;
+    }
+
+    .cta h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid rgba(0, 183, 255, 0.24);
+      background: rgba(2, 6, 18, 0.86);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(0, 183, 255, 0.1);
+      border: 1px solid rgba(0, 183, 255, 0.32);
+      color: white;
+      font-weight: 900;
+      transition: 0.25s ease;
+    }
+
+    .socials a:hover {
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--blue));
+      transform: translateY(-3px);
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.65;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes speed {
+      0% {
+        transform: translateX(-40px);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(280px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes shine {
+      0%, 55% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    @media (max-width: 940px) {
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 82px;
+        left: 18px;
+        right: 18px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        background: rgba(2, 6, 18, 0.96);
+        border: 1px solid rgba(0, 183, 255, 0.35);
+        border-radius: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero-grid,
+      .event-grid,
+      .ranking-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .stats,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 26px, 1180px);
+      }
+
+      .brand-text strong {
+        font-size: 0.82rem;
+      }
+
+      .brand-text span {
+        font-size: 0.68rem;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+      }
+
+      .rules,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .rank-item {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .points {
+        grid-column: 2;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-strip"></div>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <img src="crush-gear-logo.png" alt="Crush Gear Logo" class="brand-logo" id="brandLogo" />
+        <div class="brand-fallback" id="brandFallback">CG</div>
+        <div class="brand-text">
+          <strong>Crush Gear Community</strong>
+          <span>Race • Battle • Build • Connect</span>
+        </div>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
-        <span class="sr-only">Open menu</span>
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-btn" id="menuBtn">MENU</button>
 
-      <div class="nav-menu" id="navMenu">
+      <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#events">Events</a>
-        <a href="#battle-rules">Rules</a>
-        <a href="#build-hub">Build Hub</a>
+        <a href="#ranking">Ranking</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#rules">Rules</a>
         <a href="#join">Join</a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <main id="main">
-    <section class="hero section-pad">
+  <main>
+    <section class="hero" id="home">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Cebu • Builders • Collectors • Friendly Battles</p>
-          <h1>Revive the arena. Build your gear. Battle with the community.</h1>
-          <p class="hero-text">A home base for Crush Gear fans in Cebu — casual games, open category builds, collector showcases, repair tips, and community meetups.</p>
+        <div>
+          <div class="kicker">Turbo Battle Community</div>
+
+          <h1>
+            <span class="text-gradient">Crush Gear</span><br />
+            Battle Zone
+          </h1>
+
+          <p>
+            Welcome to our Crush Gear community — a home for builders, collectors,
+            racers, and fans who love competitive gear battles, custom setups,
+            friendly tournaments, and nostalgic anime-inspired action.
+          </p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://www.facebook.com/groups/1654668212153341" target="_blank" rel="noopener">Join Facebook Group</a>
-            <a class="btn btn-ghost" href="#events">See Events</a>
+            <a href="#join" class="btn btn-primary">Join the Community</a>
+            <a href="#events" class="btn btn-ghost">View Events</a>
           </div>
-          <div class="hero-stats" aria-label="Community highlights">
-            <div><strong>Casual</strong><span>beginner-friendly battles</span></div>
-            <div><strong>Open</strong><span>custom builds & tuning</span></div>
-            <div><strong>Cebu</strong><span>local meetups & support</span></div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>100%</strong>
+              <span>Community Spirit</span>
+            </div>
+            <div class="stat">
+              <strong>Turbo</strong>
+              <span>Battle Energy</span>
+            </div>
+            <div class="stat">
+              <strong>Open</strong>
+              <span>For All Fans</span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-art reveal" aria-label="Stylized Crush Gear battle illustration">
-          <div class="orb orb-one"></div>
-          <div class="orb orb-two"></div>
-          <img src="assets/hero-gear.svg" alt="Custom futuristic battle gear illustration" />
-          <div class="arena-card">
-            <span class="live-dot"></span>
-            <span>Next battle announcement on Facebook</span>
+        <div class="hero-card">
+          <div class="speed-line one"></div>
+          <div class="speed-line two"></div>
+          <div class="speed-line three"></div>
+
+          <div class="logo-showcase">
+            <img src="crush-gear-logo.png" alt="Crush Gear Turbo Logo" class="main-logo" id="mainLogo" />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="marquee" aria-label="Community keywords">
-      <div>
-        <span>Build</span><span>Customize</span><span>Battle</span><span>Repair</span><span>Collect</span><span>Trade</span><span>Share</span><span>Respect</span>
-      </div>
-    </section>
-
-    <section class="section-pad" id="about">
-      <div class="container two-col">
-        <div class="section-heading reveal">
-          <p class="eyebrow">About the alliance</p>
-          <h2>Made for enthusiasts nga taga Cebu.</h2>
-        </div>
-        <div class="content-card reveal">
-          <p>Crush Gear Cebu Alliance is a fan-led community for hobbyists who love the excitement of gear battles, creative builds, and nostalgia-driven collecting. Whether you are returning to the hobby or just discovering it, this community helps you learn, join, and battle with confidence.</p>
-          <p class="muted">This website is an unofficial fan-community page and is not affiliated with Bandai, Sunrise, or the original Crush Gear rights holders.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-panel" id="events">
+    <section id="about">
       <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Community schedule</p>
-          <h2>Events and activities</h2>
-          <p>Use this section for your next battle dates, mall meetups, casual sessions, or repair clinics.</p>
+        <div class="section-head">
+          <div class="section-title">
+            <span>About Us</span>
+            <h2>Built for Gear Fighters</h2>
+          </div>
+          <p class="section-note">
+            A community inspired by the high-speed, colorful, electric energy of Crush Gear.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Custom Builds</h3>
+            <p>
+              Share your Crush Gear setups, body upgrades, wheels, motors,
+              battle strategies, and repair tips with fellow members.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔥</div>
+            <h3>Friendly Battles</h3>
+            <p>
+              Join local meetups, practice battles, mini tournaments, and
+              community challenge matches with fair play and sportsmanship.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🏆</div>
+            <h3>Community Ranking</h3>
+            <p>
+              Track player progress, highlight top battlers, and celebrate
+              the most creative gear builders in the group.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="battle-zone" id="events">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">
+            <span>Events</span>
+            <h2>Upcoming Battles</h2>
+          </div>
+          <p class="section-note">
+            Replace these sample events with your actual tournament and meetup schedule.
+          </p>
         </div>
 
         <div class="event-grid">
-          <article class="event-card reveal">
-            <div class="event-date"><span>TBA</span><small>Facebook</small></div>
-            <div>
-              <h3>Nitro Open Casual</h3>
-              <p>Friendly battles for tuned builds, testing, and community learning. Bring your gear, battery, spare parts, and good sportsmanship.</p>
-              <a href="https://www.facebook.com/groups/1654668212153341" target="_blank" rel="noopener">Check announcement</a>
+          <div class="event">
+            <div class="event-date">
+              <div>
+                <strong>15</strong>
+                <span>Jul</span>
+              </div>
             </div>
-          </article>
+            <div>
+              <h3>Turbo Battle Meetup</h3>
+              <p>
+                Casual battle day for new and existing members. Bring your gear,
+                test your setup, and meet other players.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Beginner Friendly</span>
+                <span class="tag">Open Play</span>
+              </div>
+            </div>
+          </div>
 
-          <article class="event-card reveal">
-            <div class="event-date"><span>TBA</span><small>Cebu</small></div>
-            <div>
-              <h3>Beginner Build Day</h3>
-              <p>Learn basic setup, front/rear weapon choices, wheel balancing, maintenance, and simple battle preparation.</p>
-              <a href="#build-hub">View build tips</a>
+          <div class="event">
+            <div class="event-date">
+              <div>
+                <strong>28</strong>
+                <span>Jul</span>
+              </div>
             </div>
-          </article>
+            <div>
+              <h3>Community Mini Tournament</h3>
+              <p>
+                Small tournament format with brackets, elimination rounds,
+                ranking points, and best custom gear recognition.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Tournament</span>
+                <span class="tag">Ranking Points</span>
+              </div>
+            </div>
+          </div>
 
-          <article class="event-card reveal">
-            <div class="event-date"><span>TBA</span><small>Meetup</small></div>
-            <div>
-              <h3>Collectors Showcase</h3>
-              <p>Display rare kits, vintage parts, custom paint, and restoration work. Great for photos, nostalgia, and community stories.</p>
-              <a href="#gallery">See gallery</a>
+          <div class="event">
+            <div class="event-date">
+              <div>
+                <strong>10</strong>
+                <span>Aug</span>
+              </div>
             </div>
-          </article>
+            <div>
+              <h3>Build and Tune Session</h3>
+              <p>
+                Learn gear maintenance, tuning basics, balancing, wheel setup,
+                and battle preparation from experienced members.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Workshop</span>
+                <span class="tag">Build Tips</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="event-date">
+              <div>
+                <strong>24</strong>
+                <span>Aug</span>
+              </div>
+            </div>
+            <div>
+              <h3>Champion Challenge</h3>
+              <p>
+                A feature battle event for top players, custom gear showcases,
+                and special community recognition.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Challenge</span>
+                <span class="tag">Showcase</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-pad" id="battle-rules">
-      <div class="container rules-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Arena conduct</p>
-          <h2>Simple rules for fair battles</h2>
-          <p>Adjust these rules based on your official event format.</p>
-        </div>
-        <div class="rules-list reveal">
-          <div class="rule"><span>01</span><p>Respect all players, collectors, builders, and event organizers.</p></div>
-          <div class="rule"><span>02</span><p>Battle only when both players and the marshal are ready.</p></div>
-          <div class="rule"><span>03</span><p>No interference once the match starts unless safety is at risk.</p></div>
-          <div class="rule"><span>04</span><p>Declare major modifications before competitive matches.</p></div>
-          <div class="rule"><span>05</span><p>Keep the community beginner-friendly and hobby-focused.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-panel" id="build-hub">
+    <section id="ranking">
       <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Build hub</p>
-          <h2>Setups, repairs, and tuning notes</h2>
+        <div class="section-head">
+          <div class="section-title">
+            <span>Ranking</span>
+            <h2>Battle Standings</h2>
+          </div>
+          <p class="section-note">
+            Sample ranking board only. Update names and points based on your real matches.
+          </p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card reveal">
-            <div class="icon">⚙</div>
-            <h3>Starter setup</h3>
-            <p>Choose a stable chassis, test wheel grip, confirm battery fit, and inspect weapon alignment before battle.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon">⟲</div>
-            <h3>Maintenance</h3>
-            <p>Clean axles, remove dust, check loose screws, and test rolling balance after every meetup.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon">✦</div>
-            <h3>Custom parts</h3>
-            <p>Use safe materials, avoid sharp exposed edges, and make sure modified parts are secure before entering the arena.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon">☑</div>
-            <h3>Event checklist</h3>
-            <p>Bring gear, batteries, tools, spare wheels, tape, container box, charger, and your best sportsmanship.</p>
-          </article>
+
+        <div class="ranking-wrap">
+          <div class="ranking-card">
+            <h3>How Ranking Works</h3>
+            <p>
+              Players can earn points by joining official community battles,
+              winning matches, helping new players, and participating in build
+              showcases. Keep the system simple, fair, and fun for everyone.
+            </p>
+            <br />
+            <a href="#join" class="btn btn-primary">Become a Gear Fighter</a>
+          </div>
+
+          <div class="rank-list">
+            <div class="rank-item">
+              <div class="rank-no">1</div>
+              <div class="rank-name">
+                <strong>Player Name</strong>
+                <span>Turbo Class</span>
+              </div>
+              <div class="points">980 pts</div>
+            </div>
+
+            <div class="rank-item">
+              <div class="rank-no">2</div>
+              <div class="rank-name">
+                <strong>Player Name</strong>
+                <span>Attack Class</span>
+              </div>
+              <div class="points">850 pts</div>
+            </div>
+
+            <div class="rank-item">
+              <div class="rank-no">3</div>
+              <div class="rank-name">
+                <strong>Player Name</strong>
+                <span>Speed Class</span>
+              </div>
+              <div class="points">790 pts</div>
+            </div>
+
+            <div class="rank-item">
+              <div class="rank-no">4</div>
+              <div class="rank-name">
+                <strong>Player Name</strong>
+                <span>Custom Class</span>
+              </div>
+              <div class="points">720 pts</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-pad" id="gallery">
+    <section class="battle-zone" id="gallery">
       <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Community gallery</p>
-          <h2>Featured builds</h2>
-          <p>Replace these placeholders with your official group photos once you have permission to use them.</p>
+        <div class="section-head">
+          <div class="section-title">
+            <span>Gallery</span>
+            <h2>Community Highlights</h2>
+          </div>
+          <p class="section-note">
+            Replace these blocks with photos of real battles, gears, and community events.
+          </p>
         </div>
-        <div class="gallery-grid">
-          <figure class="gallery-card reveal"><div class="placeholder gear-a"></div><figcaption>Open category build</figcaption></figure>
-          <figure class="gallery-card reveal"><div class="placeholder gear-b"></div><figcaption>Classic collection</figcaption></figure>
-          <figure class="gallery-card reveal"><div class="placeholder gear-c"></div><figcaption>Repair and tuning</figcaption></figure>
-          <figure class="gallery-card reveal"><div class="placeholder gear-d"></div><figcaption>Battle day photos</figcaption></figure>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <div>
+              <strong>Battle Arena</strong>
+              <span>Upload your event photo</span>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div>
+              <strong>Custom Gear</strong>
+              <span>Showcase member builds</span>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div>
+              <strong>Tournament Day</strong>
+              <span>Feature winners and matches</span>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div>
+              <strong>Collectors Corner</strong>
+              <span>Display rare gear collections</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="cta section-pad" id="join">
-      <div class="container cta-card reveal">
-        <div>
-          <p class="eyebrow">Join the arena</p>
-          <h2>Ready to battle or share your build?</h2>
-          <p>Connect with the community through the Facebook group for announcements, selling/trading posts, build discussions, and event updates.</p>
+    <section id="rules">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-title">
+            <span>Community Rules</span>
+            <h2>Fair Play First</h2>
+          </div>
+          <p class="section-note">
+            Keep the community safe, respectful, and exciting for all players.
+          </p>
         </div>
-        <a class="btn btn-primary" href="https://www.facebook.com/groups/1654668212153341" target="_blank" rel="noopener">Go to Facebook Group</a>
+
+        <div class="rules">
+          <div class="rule">
+            <div class="rule-num">1</div>
+            <div>
+              <strong>Respect All Members</strong>
+              <p>No bullying, harassment, or personal attacks. Keep battles friendly and fun.</p>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-num">2</div>
+            <div>
+              <strong>Battle Fairly</strong>
+              <p>Follow tournament rules, approved gear limits, and event guidelines.</p>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-num">3</div>
+            <div>
+              <strong>Share Knowledge</strong>
+              <p>Help beginners understand builds, repairs, and proper gear handling.</p>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-num">4</div>
+            <div>
+              <strong>Celebrate the Hobby</strong>
+              <p>Enjoy the nostalgia, the competition, and the creativity of Crush Gear.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="container">
+        <div class="cta">
+          <h2><span class="text-gradient">Ready to Battle?</span></h2>
+          <p>
+            Join the community, bring your Crush Gear, meet other fans, and be part of
+            our next turbo battle event. Everyone is welcome — beginners, collectors,
+            builders, and competitive players.
+          </p>
+
+          <a
+            href="https://www.facebook.com/groups/1654668212153341"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Join Facebook Group
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container footer-grid">
-      <div>
-        <a class="brand footer-brand" href="#top">
-          <img src="assets/logo.svg" alt="" />
-          <span><strong>Crush Gear</strong><small>Cebu Alliance</small></span>
-        </a>
-        <p>Fan community website template. Replace placeholder images and schedule details with approved group assets.</p>
+      <p>© 2026 Crush Gear Community. All rights reserved.</p>
+
+      <div class="socials">
+        <a href="https://www.facebook.com/groups/1654668212153341" target="_blank" rel="noopener noreferrer">f</a>
+        <a href="#home">↑</a>
       </div>
-      <div>
-        <h3>Quick links</h3>
-        <a href="#events">Events</a>
-        <a href="#battle-rules">Rules</a>
-        <a href="#build-hub">Build Hub</a>
-        <a href="https://www.facebook.com/groups/1654668212153341" target="_blank" rel="noopener">Facebook Group</a>
-      </div>
-    </div>
-    <div class="footer-bottom container">
-      <small>© <span id="year"></span> Crush Gear Cebu Alliance fan community. Unofficial fan page.</small>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    const brandLogo = document.getElementById("brandLogo");
+    const brandFallback = document.getElementById("brandFallback");
+    const mainLogo = document.getElementById("mainLogo");
+
+    brandLogo.addEventListener("error", () => {
+      brandLogo.style.display = "none";
+      brandFallback.style.display = "grid";
+    });
+
+    mainLogo.addEventListener("error", () => {
+      mainLogo.style.display = "none";
+      document.querySelector(".logo-showcase").innerHTML = `
+        <div style="
+          position:relative;
+          z-index:2;
+          text-align:center;
+          padding:32px;
+          border-radius:24px;
+          background:linear-gradient(135deg, rgba(255,28,22,.25), rgba(0,183,255,.25));
+          border:1px solid rgba(255,215,0,.35);
+          box-shadow:0 0 28px rgba(0,183,255,.35);
+        ">
+          <div style="
+            font-size:clamp(2.5rem, 6vw, 5rem);
+            font-weight:900;
+            line-height:.9;
+            text-transform:uppercase;
+            background:linear-gradient(180deg,#fff,#00b7ff,#ff1c16,#ff7a00,#ffd700);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+          ">
+            Crush<br>Gear
+          </div>
+          <p style="margin-top:14px;color:#a9b7d0;">Save your logo as crush-gear-logo.png</p>
+        </div>
+      `;
+    });
+  </script>
 </body>
 </html>
